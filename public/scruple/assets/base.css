@@ -1,0 +1,65 @@
+/* Design tokens. No logo or brand guide yet, so everything visual lives here
+   and can be swapped in one place. */
+:root {
+  --paper: #f4eee3;        /* parchment */
+  --paper-2: #ebe2d2;      /* deeper parchment for panels */
+  --ink: #1f2a44;          /* navy ink: text and wordmark */
+  --ink-soft: #4a5368;
+  --maroon: #6e2233;       /* accent, actions */
+  --brown: #7a5c43;        /* secondary accent, rules */
+  --sage: #5f6f52;         /* positive / done */
+  --rule: #cdbfa8;
+
+  --font-script: "La Belle Aurore", cursive;   /* wordmark + hand notes; try others in the footer picker */
+  --font-serif: "Fraunces", Georgia, serif;                   /* headings */
+  --font-sans: "IBM Plex Sans", system-ui, sans-serif;        /* body */
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;      /* numbers */
+  --font-glyph: "STIX Two Text", "Apple Symbols", serif;     /* the scruple sign; Fraunces has no glyph for it */
+
+  --measure: 64ch;
+  --gutter: clamp(16px, 4vw, 40px);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 17px/1.6 var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--maroon); text-underline-offset: 3px; }
+::selection { background: var(--maroon); color: var(--paper); }
+
+.wordmark {
+  font-family: var(--font-script);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: 0;
+}
+.hand { font-family: var(--font-script); }
+
+input, select, textarea, button { font: inherit; color: inherit; }
+.field {
+  width: 100%;
+  padding: 11px 12px;
+  background: #fbf8f2;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+.field:focus { outline: 2px solid var(--ink); outline-offset: 1px; border-color: var(--ink); }
+.btn {
+  display: inline-block;
+  padding: 11px 20px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 0;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn:hover { background: var(--maroon); }
+.btn:focus-visible { outline: 2px solid var(--maroon); outline-offset: 2px; }

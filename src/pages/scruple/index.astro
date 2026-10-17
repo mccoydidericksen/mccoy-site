@@ -1,0 +1,42 @@
+---
+import Base from "../../layouts/Base.astro";
+import ScrupleDemos from "../../components/ScrupleDemos.astro";
+---
+<Base
+  title="Scruple · McCoy Didericksen"
+  description="Margin recovery for independent pharmacies: what we're building, how it works, and two demos you can open."
+>
+  <header class="hero short">
+    <h1><span class="glyph">℈</span> Scruple<br><em>money lost a few dollars at a time.</em></h1>
+    <p>Independent pharmacies get paid below what they paid for the drug, wait on Medicare refunds that never arrive, and watch wholesaler prices drift up, a few dollars per claim, in reports nobody has time to read. Scruple reads them.</p>
+    <p class="where">In progress, with a design-partner pharmacy in Utah. <a href="https://getscruple.io/learn">Writing for owners</a>.</p>
+  </header>
+
+  <section>
+    <h2>Open a demo</h2>
+    <ScrupleDemos />
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <ul class="facts">
+      <li><strong>One export in, a dollar figure out.</strong> A pharmacy sends a report it already has: wholesaler invoices, or a claims export with the patient columns deleted. The pipeline joins it to NADAC, CMS's weekly survey of what pharmacies actually pay, and flags cost drift, purchases above the national average, and claims paid below cost, each with its appeal deadline.</li>
+      <li><strong>Remittances, parsed from the raw format.</strong> A pure-Python X12 835 parser reads payer remittances, matches them to fills, and reconciles Medicare Drug Price Negotiation refunds: paid, short, or missing.</li>
+      <li><strong>Built to sit above the pharmacy system, not replace it.</strong> Six of the seven inputs (invoices, NADAC, 835s, refund files, contracts, statements) don't depend on which pharmacy software a store runs.</li>
+      <li><strong>A shortage check that refreshes itself.</strong> A GitHub Action rebuilds a bundle every morning from FDA's Drug Shortages list, RxNorm (which NDCs are the same clinical drug) and NADAC. Matching happens in the browser, so a pharmacy's product list never leaves the page.</li>
+      <li><strong>Synthetic data that can't be misread.</strong> The sample board uses invented numbers, so the build swaps every real payer and wholesaler name for a placeholder and fails if one survives. Invented figures next to a real PBM's name would read as a claim about that PBM.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Rules we hold to</h2>
+    <ul class="facts">
+      <li><strong>Never touch patient identifiers.</strong> The free check runs on files with none. Claim-level work waits for a business associate agreement.</li>
+      <li><strong>Every number has a source.</strong> Anything shown to a pharmacy traces back to a calculation or a cited document in the repo.</li>
+      <li><strong>Build against documented formats, then fix on contact with real files.</strong></li>
+    </ul>
+    <p class="stack">Python and uv for the pipeline; static HTML, Vercel Routing Middleware and a few functions for the site; Playwright for screenshot smoke tests.</p>
+  </section>
+
+  <a class="back" href="/">← Back to McCoy Didericksen</a>
+</Base>

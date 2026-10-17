@@ -1,0 +1,41 @@
+---
+// The Scruple demos, served as their own pages with Scruple's own styles. The HTML comes from
+// scripts/sync-scruple.mjs; this route only adds analytics and a way back.
+import Analytics from "../../components/Analytics.astro";
+import shortage from "../../demos/shortage.html?raw";
+import board from "../../demos/board.html?raw";
+
+export function getStaticPaths() {
+  return [{ params: { demo: "shortage" } }, { params: { demo: "board" } }];
+}
+
+const raw = { shortage, board }[Astro.params.demo as "shortage" | "board"];
+const head = raw.match(/<head>([\s\S]*)<\/head>/)![1];
+const body = raw.match(/<body>([\s\S]*)<\/body>/)![1];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <Fragment set:html={head} />
+  <Analytics />
+</head>
+<body>
+  <Fragment set:html={body} />
+  <aside class="mcd-demo" aria-label="About this demo">
+    <span>A Scruple demo · sample data</span>
+    <a href="/">← McCoy Didericksen</a>
+  </aside>
+  <style is:global>
+    .mcd-demo {
+      position: fixed; z-index: 50; left: 50%; bottom: 1rem; transform: translateX(-50%);
+      display: flex; gap: 0.9rem; align-items: center; white-space: nowrap;
+      padding: 0.5rem 0.95rem; border-radius: 999px;
+      background: #1b2622; color: #e6dcc6; box-shadow: 0 6px 24px rgba(0, 0, 0, 0.25);
+      font: 500 0.85rem/1.2 Georgia, "Times New Roman", serif;
+    }
+    .mcd-demo span { opacity: 0.75; font-style: italic; }
+    .mcd-demo a { color: #e6dcc6; text-decoration-color: #c7a15a; text-underline-offset: 0.18em; }
+    @media print { .mcd-demo { display: none; } }
+  </style>
+</body>
+</html>

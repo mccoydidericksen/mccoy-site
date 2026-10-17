@@ -1,0 +1,113 @@
+/* Drug shortage check. Tokens in base.css, page chrome in site.css. */
+
+.visually-hidden { position: absolute; left: -9999px; }
+.sc-head { padding-bottom: 20px; }
+.sc-head .sec-sub { max-width: 66ch; margin-bottom: 0; }
+
+.sc-input { padding: 8px 0 28px; }
+.sc-input-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(220px, 1fr); gap: 20px 28px; align-items: start; }
+.sc-field { display: grid; gap: 8px; min-width: 0; }
+.sc-label { font-size: 15px; color: var(--ink-soft); }
+.sc-label small { font-size: 13px; }
+.sc-gridhead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.sc-gridtools { font-size: 13px; color: var(--ink-soft); display: inline-flex; gap: 12px; align-items: baseline; }
+.sc-gridwrap { border: 1px solid var(--rule); border-radius: 8px; background: var(--paper); overflow: auto; max-height: 440px; }
+.sc-grid { border-collapse: separate; border-spacing: 0; width: 100%; table-layout: fixed; font-size: 14px; }
+.sc-grid .c-n { width: 2.6em; } .sc-grid .c-ndc { width: 11.5em; } .sc-grid .c-qty { width: 7.5em; }
+.sc-grid th { position: sticky; top: 0; z-index: 1; background: var(--paper-2); font: 500 11px var(--font-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); padding: 9px 10px; border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule); text-align: left; white-space: nowrap; }
+.sc-grid th small { text-transform: none; letter-spacing: 0; font-size: 11px; }
+.sc-grid th.q { text-align: right; }
+.sc-grid th:last-child, .sc-grid td:last-child { border-right: 0; }
+.sc-grid td { padding: 0; border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule); }
+.sc-grid tr:last-child td { border-bottom: 0; }
+.sc-grid td.n { text-align: right; color: var(--ink-soft); font: 400 12px/1 var(--font-mono); padding: 0 8px; background: var(--paper-2); user-select: none; }
+.sc-grid input { display: block; width: 100%; border: 0; border-radius: 0; background: transparent; padding: 8px 10px; font: 400 14px/1.3 var(--font-sans); color: var(--ink); outline: none; box-sizing: border-box; min-width: 0; }
+.sc-grid input[data-col="ndc"], .sc-grid input[data-col="qty"] { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.sc-grid input[data-col="qty"] { text-align: right; }
+.sc-grid input:focus { box-shadow: inset 0 0 0 2px var(--maroon); background: var(--paper); position: relative; }
+.sc-grid input::placeholder { color: var(--ink-soft); opacity: .55; }
+.sc-grid td.bad input { color: var(--maroon); text-decoration: underline wavy; text-underline-offset: 3px; }
+.sc-side { display: grid; gap: 14px; align-content: start; padding-top: 26px; }
+.sc-upload { cursor: pointer; }
+.sc-upload input { position: absolute; left: -9999px; }
+.sc-upload:focus-within .cta-link { outline: 2px solid var(--maroon); outline-offset: 2px; }
+.sc-linkbtn { background: none; border: 0; padding: 0; text-align: left; cursor: pointer; color: var(--maroon); text-decoration: underline; text-underline-offset: 3px; }
+.sc-note { margin: 0; font-size: 14px; color: var(--ink-soft); max-width: 60ch; }
+.sc-msg { margin: 14px 0 0; font-size: 15px; color: var(--ink-soft); min-height: 1.4em; }
+.sc-msg.err { color: var(--maroon); }
+
+.sc-results { padding: 20px 0 0; border-top: 1px dashed var(--rule); }
+.sc-results .peek-head { margin-bottom: 16px; }
+.sc-results .stamp { transform: rotate(-4deg); }
+
+.sc-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 28px; }
+.sc-tile { background: var(--paper-2); border-radius: 10px; padding: 14px 16px 16px; display: grid; gap: 2px; min-width: 0; }
+.sc-tile b { font: 500 32px/1.1 var(--font-serif); color: var(--ink); font-variant-numeric: tabular-nums; }
+.sc-tile.hot b { color: var(--maroon); }
+.sc-tile span { font-size: 14px; color: var(--ink-soft); line-height: 1.35; }
+.sc-tile small { font-size: 13px; color: var(--ink-soft); }
+
+.sc-h3 { font: 500 22px/1.2 var(--font-serif); margin: 0 0 12px; }
+.sc-first { margin-bottom: 32px; }
+.sc-ledger { padding: 0; margin: 0; list-style: none; }
+.sc-ledger li { display: grid; grid-template-columns: 3.2em 1fr; gap: 0 20px; padding: 14px 0; border-bottom: 1px dashed var(--rule); }
+.sc-ledger li:first-child { border-top: 1px dashed var(--rule); }
+.sc-ledger .ledger-n { font: 500 18px/1.6 var(--font-serif); color: var(--maroon); }
+.sc-ledger p { margin: 0; }
+.sc-ledger .why { color: var(--ink-soft); font-size: 15px; }
+
+.sc-table-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px 16px; }
+.sc-filter { font-size: 14px; color: var(--ink-soft); display: inline-flex; align-items: center; gap: 6px; }
+.sc-table-wrap { overflow-x: auto; margin-top: 6px; }
+.sc-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.sc-table th { text-align: left; font: 500 11px var(--font-sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); padding: 8px 10px 8px 0; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.sc-table td { padding: 9px 10px 9px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.sc-table .num, .sc-table td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sc-table .drug { min-width: 16em; }
+.sc-table .drug b { font-weight: 500; }
+.sc-table .ndc { display: block; font: 400 13px var(--font-mono); color: var(--ink-soft); }
+.sc-table tr.ok td { color: var(--ink-soft); }
+.sc-table tr.hidden-ok { display: none; }
+.sc-table .since { white-space: nowrap; color: var(--ink-soft); font-size: 14px; }
+
+.pill { display: inline-block; font: 500 12px/1.2 var(--font-sans); letter-spacing: .02em; padding: 4px 9px; border-radius: 999px; white-space: nowrap; border: 1px solid transparent; }
+.pill.current { background: var(--maroon); color: var(--paper); }
+.pill.to_be_discontinued, .pill.discontinued { background: var(--brown); color: var(--paper); }
+.pill.watch { background: transparent; color: var(--brown); border-color: var(--brown); }
+.pill.resolved { background: transparent; color: var(--sage); border-color: var(--sage); }
+.pill.ok { background: transparent; color: var(--ink-soft); border-color: var(--rule); }
+.pill-sub { display: block; font-size: 12px; color: var(--ink-soft); margin-top: 4px; max-width: 22ch; }
+
+.sc-alt { font-size: 14px; }
+.sc-alt summary { cursor: pointer; color: var(--maroon); font-weight: 500; list-style: none; }
+.sc-alt summary::-webkit-details-marker { display: none; }
+.sc-alt summary::after { content: " ▸"; }
+.sc-alt[open] summary::after { content: " ▾"; }
+.sc-alt .none { color: var(--ink-soft); }
+.sc-alt-body { margin-top: 8px; display: grid; gap: 10px; }
+.sc-alt-body p { margin: 0; color: var(--ink-soft); }
+.sc-alt-body table { border-collapse: collapse; font-size: 13px; }
+.sc-alt-body th { font-weight: 500; color: var(--ink-soft); text-align: left; padding: 2px 12px 2px 0; border: 0; letter-spacing: 0; text-transform: none; font-size: 13px; }
+.sc-alt-body td { padding: 2px 12px 2px 0; border: 0; }
+.sc-alt-body .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.sc-alt-body .short { color: var(--maroon); }
+
+.sc-tip { width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--rule); background: transparent; color: var(--ink-soft); font: 500 11px/1 var(--font-sans); cursor: pointer; vertical-align: middle; padding: 0; }
+.sc-tip:hover, .sc-tip[aria-expanded="true"] { border-color: var(--ink); color: var(--ink); }
+.sc-tipbox { margin-top: 14px; background: var(--paper-2); border-radius: 10px; padding: 14px 16px; font-size: 14px; color: var(--ink-soft); }
+.sc-tipbox div[hidden] { display: none; }
+.sc-tipbox b { color: var(--ink); font-weight: 500; }
+
+.sc-about { padding: clamp(36px, 6vw, 56px) 0 0; }
+.sc-sources { margin: 0 0 12px; padding-left: 1.2em; font-size: 15px; display: grid; gap: 4px; }
+
+@media (max-width: 720px) {
+  .sc-input-grid { grid-template-columns: 1fr; }
+  .sc-grid .c-ndc { width: 9.5em; } .sc-grid .c-qty { width: 5.5em; } .sc-grid .c-n { width: 2em; }
+  .sc-grid input { padding: 8px 6px; font-size: 13px; }
+  .sc-side { padding-top: 0; }
+  .sc-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sc-tile b { font-size: 26px; }
+  .sc-table { font-size: 14px; }
+  .sc-table .drug { min-width: 12em; }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "mccoy-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync:scruple": "node scripts/sync-scruple.mjs"
+  },
+  "dependencies": {
+    "astro": "7.4.0",
+    "posthog-js": "1.438.12"
+  }
+}

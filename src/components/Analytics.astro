@@ -1,0 +1,18 @@
+---
+// PostHog: pageviews, autocaptured clicks, and session replay (turn replay on in the PostHog
+// project settings). No key, no script: local dev and preview builds stay quiet.
+// Inputs are masked by default; anything with the ph-no-capture class is left out of recordings.
+---
+<script>
+  import posthog from "posthog-js";
+
+  const key = import.meta.env.PUBLIC_POSTHOG_KEY;
+  if (key && !posthog.__loaded) {
+    posthog.init(key, {
+      api_host: import.meta.env.PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com",
+      // The ClientRouter swaps pages without a full load, so count history changes as pageviews.
+      capture_pageview: "history_change",
+      person_profiles: "identified_only",
+    });
+  }
+</script>

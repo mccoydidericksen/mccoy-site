@@ -1,0 +1,33 @@
+---
+// The two Scruple demos as cards. Board figures are the sample pharmacy's headline numbers from
+// the board itself; re-check them after npm run sync:scruple.
+---
+<ul class="demos">
+  <li>
+    <a class="demo" href="/scruple/shortage#sample" data-astro-reload>
+      <span class="kicker">Live · runs in your browser</span>
+      <span class="name">Drug shortage check</span>
+      <span class="blurb">Paste an NDC list, or load a made-up pharmacy. Joins FDA's shortage list, RxNorm and NADAC to show what's short and what the alternatives cost.</span>
+      <span class="peek" aria-hidden="true">
+        <span class="peek-row"><span>Product 1 · 1,200 units</span><span class="flag short">on FDA's list</span></span>
+        <span class="peek-row"><span>Product 2 · 840 units</span><span class="flag alt">short at other makers</span></span>
+        <span class="peek-row"><span>Product 3 · 610 units</span><span class="flag ok">clear</span></span>
+      </span>
+      <span class="go">Open the shortage check</span>
+    </a>
+  </li>
+  <li>
+    <a class="demo" href="/scruple/board" data-astro-reload>
+      <span class="kicker">Sample · a made-up pharmacy</span>
+      <span class="name">Margin board</span>
+      <span class="blurb">What a check turns up for three stores and 90 days of reports: refunds that never came, claims paid below cost, prices that drifted.</span>
+      <span class="peek" aria-hidden="true">
+        <span class="big">$18,036</span>
+        <span class="dim">you can still get back</span>
+        <span class="bar"><i style="width: 78%"></i></span>
+        <span class="dim">$23,065 a year overpaid, going forward</span>
+      </span>
+      <span class="go">Open the board</span>
+    </a>
+  </li>
+</ul>

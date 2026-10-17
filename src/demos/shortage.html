@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Drug shortage check · Scruple</title>
+<meta name="description" content="Paste your top products. See which are on FDA's shortage list, which are being discontinued, and what the alternatives cost.">
+<link rel="icon" href="/scruple/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&family=La+Belle+Aurore&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text&text=%E2%84%88&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/scruple/assets/base.css">
+<link rel="stylesheet" href="/scruple/assets/site.css">
+<link rel="stylesheet" href="/scruple/assets/shortage.css">
+</head>
+<body>
+
+<header class="top">
+  <a href="/scruple" class="wordmark top-mark" aria-label="Scruple home">Scruple</a>
+  <nav class="top-nav"><a href="/scruple/board" class="top-link wide-only">Example</a><a href="/scruple" class="top-link">About Scruple</a></nav>
+</header>
+
+<main>
+<section class="guide-head sc-head">
+  <h1 class="guide-title">Drug shortage check</h1>
+  <p class="sec-sub">Type or paste your top products with an NDC and a quantity, from any pharmacy system or wholesaler export. We mark what's on FDA's shortage list, what's being discontinued, and what the same drug costs from other makers. Your list never leaves your browser.</p>
+</section>
+
+<section class="sc-input ph-no-capture" aria-labelledby="h-input">
+  <h2 id="h-input" class="visually-hidden">Your product list</h2>
+  <div class="sc-input-grid">
+    <div class="sc-field">
+      <div class="sc-gridhead">
+        <span class="sc-label">Your products <small>(type, or paste straight from Excel; the columns sort themselves out)</small></span>
+        <span class="sc-gridtools"><span id="rowcount"></span><button type="button" class="sc-linkbtn" id="clear" hidden>Clear</button></span>
+      </div>
+      <div class="sc-gridwrap">
+        <table class="sc-grid" id="grid" aria-label="Product list">
+          <colgroup><col class="c-n"><col class="c-ndc"><col class="c-desc"><col class="c-qty"></colgroup>
+          <thead><tr><th class="n" aria-label="Row"></th><th>NDC</th><th>Drug <small>optional</small></th><th class="q">Quantity</th></tr></thead>
+          <tbody id="gridbody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="sc-side">
+      <button type="button" class="btn" id="check">Check my list</button>
+      <label class="sc-upload"><input type="file" id="file" accept=".csv,.tsv,.txt,text/csv,text/plain"> <span class="cta-link">Upload a CSV instead</span></label>
+      <button type="button" class="cta-link sc-linkbtn" id="sample">Try it with a made-up pharmacy</button>
+      <p class="sc-note" id="input-note">What we need: an NDC and a quantity per product. The drug name is for you. Enter moves down a row; a pasted block fills the rows below. Nothing leaves this computer.</p>
+    </div>
+  </div>
+  <p class="sc-msg" id="msg" role="status" aria-live="polite"></p>
+</section>
+
+<section class="sc-results ph-no-capture" id="results" hidden aria-labelledby="h-results">
+  <div class="peek-head">
+    <h2 id="h-results" class="sec-title">What we found</h2>
+    <span class="stamp" id="stamp" hidden>Sample<small>quantities invented</small></span>
+  </div>
+
+  <div class="sc-tiles" id="tiles"></div>
+
+  <div class="sc-first" id="first" hidden>
+    <h3 class="sc-h3">Where to start</h3>
+    <ol class="ledger sc-ledger" id="first-list"></ol>
+  </div>
+
+  <div class="sc-table-head">
+    <h3 class="sc-h3">Every product, biggest first <button type="button" class="sc-tip" data-tip="order" aria-label="How the list is ordered">?</button></h3>
+    <label class="sc-filter"><input type="checkbox" id="only-flagged" checked> Only products with something to look at</label>
+  </div>
+  <div class="sc-table-wrap">
+    <table class="sc-table" id="table">
+      <thead><tr>
+        <th>Product</th>
+        <th class="num">Your qty</th>
+        <th>Status <button type="button" class="sc-tip" data-tip="status" aria-label="How status is decided">?</button></th>
+        <th>Since</th>
+        <th class="num">At NADAC <button type="button" class="sc-tip" data-tip="nadac" aria-label="How this is calculated">?</button></th>
+        <th>Alternatives <button type="button" class="sc-tip" data-tip="alt" aria-label="How alternatives are found">?</button></th>
+      </tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+  <p class="sc-note" id="unpriced"></p>
+
+  <div class="sc-tipbox" id="tipbox" hidden>
+    <div data-for="status"><b>Status.</b> Exact match on your 11-digit NDC against FDA's Drug Shortages list. If FDA lists another package size of the same product (same first nine digits), we show that status and say so. "Same drug short at other makers" means your NDC isn't listed, but other NDCs of the same clinical drug (same ingredient, strength and form in RxNorm) are.</div>
+    <div data-for="order"><b>Order.</b> Products FDA lists come first, then products whose drug is short at other makers, then the rest. Within each group, the biggest NADAC spend first (your quantity times NADAC per unit), and products NADAC doesn't price after those, by quantity.</div>
+    <div data-for="nadac"><b>At NADAC.</b> Your quantity times the current NADAC per unit for that NDC (CMS's survey of what pharmacies actually paid, updated weekly). It sizes the product, it isn't your invoice. Blank when NADAC has no price for the NDC.</div>
+    <div data-for="alt"><b>Alternatives.</b> Other active NDCs of the same clinical drug in RxNorm (same ingredient, strength and dose form) that FDA doesn't list, cheapest NADAC first; then other strengths of the same form, with how many of their NDCs are short. Same clinical drug is close to AB-rated, not identical: check the Orange Book and the patient's plan before switching.</div>
+  </div>
+</section>
+
+<section class="sc-about" aria-labelledby="h-about">
+  <h2 id="h-about" class="sc-h3">Where the data comes from</h2>
+  <ul class="sc-sources" id="sources">
+    <li><a href="https://www.accessdata.fda.gov/scripts/drugshortages/" rel="noopener">FDA Drug Shortages</a> via openFDA, <span id="src-fda">updated daily</span>.</li>
+    <li><a href="https://www.medicaid.gov/medicaid/prescription-drugs/pharmacy-pricing" rel="noopener">NADAC</a> (CMS), <span id="src-nadac">weekly</span>.</li>
+    <li><a href="https://www.nlm.nih.gov/research/umls/rxnorm/" rel="noopener">RxNorm</a> (National Library of Medicine) for which NDCs are the same drug.</li>
+  </ul>
+  <p class="sc-note">FDA's list is what manufacturers report. Your wholesaler's outs and FDA's list overlap but aren't the same thing. We'd add your wholesaler's invoice next, so the alternative shows your price, not the national average.</p>
+</section>
+</main>
+
+<footer class="foot">
+  <span><span class="glyph">℈</span> Scruple, 2026</span>
+  <a href="/scruple">About Scruple</a>
+</footer>
+
+<script type="module" src="/scruple/assets/shortage.js"></script>
+</body>
+</html>

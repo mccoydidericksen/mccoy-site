@@ -1,0 +1,71 @@
+---
+import Base from "../layouts/Base.astro";
+import ScrupleDemos from "../components/ScrupleDemos.astro";
+---
+<Base
+  title="McCoy Didericksen"
+  description="Software engineer in Utah building AI agents and the tooling around them. Usually outside otherwise."
+>
+  <header class="hero">
+    <svg class="contours" viewBox="0 0 800 420" aria-hidden="true" preserveAspectRatio="none">
+      <path d="M-20 300 C 120 250, 180 330, 320 280 S 540 200, 700 260 S 820 300, 860 280"/>
+      <path d="M-20 330 C 130 280, 190 360, 330 310 S 550 230, 710 290 S 830 330, 870 310"/>
+      <path d="M-20 360 C 140 310, 200 390, 340 340 S 560 260, 720 320 S 840 360, 880 340"/>
+      <path d="M-20 390 C 150 340, 210 420, 350 370 S 570 290, 730 350 S 850 390, 890 370"/>
+      <path d="M200 120 C 260 80, 340 90, 380 130 S 420 200, 360 220 S 240 200, 200 160 Z"/>
+      <path d="M220 130 C 270 100, 330 108, 362 140 S 395 192, 350 206 S 258 190, 222 160 Z"/>
+      <path d="M244 140 C 282 120, 322 126, 344 150 S 368 184, 340 192 S 276 182, 246 162 Z"/>
+      <path d="M520 60 C 600 20, 700 40, 760 90 S 780 180, 700 190 S 560 160, 520 110 Z"/>
+      <path d="M548 72 C 612 42, 690 58, 738 98 S 752 168, 696 176 S 582 152, 550 112 Z"/>
+    </svg>
+    <h1>McCoy Didericksen<br><em>builds the tools, then goes outside.</em></h1>
+    <p>Software engineer in Utah. I build AI agents and the tooling around them: the parts that read your systems, do the tedious work, and tell you plainly what they did. I'd rather spend the time that saves on a trail or with a book.</p>
+    <p class="where">South Jordan, Utah. Remote or along the Wasatch Front.</p>
+    <ul class="links">
+      <li><a href="https://github.com/mccoydidericksen">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/mccoydid">LinkedIn</a></li>
+      <li><a href="mailto:mccoy.did@gmail.com">mccoy.did@gmail.com</a></li>
+    </ul>
+  </header>
+
+  <section id="bench">
+    <h2>On the bench</h2>
+    <p class="bench-lede"><strong><span class="glyph">℈</span> Scruple.</strong> We're building margin recovery for independent pharmacies, which lose money a few dollars at a time: claims paid below cost, Medicare refunds that never arrive, wholesaler prices that creep up. Both demos below run on public data or a made-up pharmacy. <a href="/scruple">How it's built</a></p>
+    <ScrupleDemos />
+  </section>
+
+  <section id="projects">
+    <h2>Off the shelf</h2>
+    <ul class="shelf">
+      <li><a class="spine tall s-wine" href="/scruple"><span class="title">Scruple</span><span class="tag">pharmacy margins</span></a></li>
+      <li><a class="spine s-green" href="https://github.com/mccoydidericksen"><span class="title">basecamp-mcp</span><span class="tag">MCP server + agent</span></a></li>
+      <li><a class="spine s-brown" href="https://github.com/mccoydidericksen"><span class="title">Claude Code toolchain</span><span class="tag">skills, subagents, hooks</span></a></li>
+      <li><a class="spine short thin s-slate" href="https://github.com/mccoydidericksen"><span class="title">Agent cost audit</span><span class="tag">write-up</span></a></li>
+      <li><a class="spine s-ochre" href="https://bookrot.app"><span class="title">bookrot</span><span class="tag">in the shop</span></a></li>
+      <li><a class="spine short s-plum" href="https://github.com/mccoydidericksen"><span class="title">Customer portal</span><span class="tag">freelance</span></a></li>
+    </ul>
+    <ul class="shelf-notes">
+      <li><strong>basecamp-mcp.</strong> An MCP server and a small agent that plan backcountry trips in Utah: NWS weather, Recreation.gov campgrounds and live site availability, avalanche forecasts. One tool catalog, two consumers, tested against fixtures and the live feeds. <span class="meta">TypeScript, MCP SDK, Anthropic API.</span></li>
+      <li><strong>Claude Code toolchain.</strong> The skills, subagents, hooks, and CLI clients my team uses to let agents read and act on Jira, Bitbucket, Sentry, Sidekiq, and Slack, with a fresh-context code reviewer that scores its own confidence. <span class="meta">Internal; write-up coming.</span></li>
+      <li><strong>Agent cost audit.</strong> Where the tokens went across a quarter of AI-assisted development, and what changed once we knew. <span class="meta">Essay, in progress.</span></li>
+      <li><strong>bookrot.</strong> Reading-comprehension quizzes for people who actually finish books. <span class="meta">Mastra, Bun, Postgres. Back in the shop for a rebuild.</span></li>
+      <li><strong>Customer portal.</strong> A freelance build for a small business: scheduling, invoicing, and client messaging over a Monday.com integration with single sign-on. <span class="meta">Next.js, Auth0, Vercel.</span></li>
+    </ul>
+  </section>
+
+  <section id="work">
+    <h2>Where I've worked</h2>
+    <ul class="ledger">
+      <li><span class="when">2025 to now</span><p class="what"><strong>Kadince</strong>, software engineer<span>Dashboards and search for a compliance platform used by community banks, plus the team's AI developer tooling. Remote.</span></p></li>
+      <li><span class="when">2025</span><p class="what"><strong>Ping Assistant</strong>, founding software engineer<span>Production AI agents for accounting firms: client communication, documents, meeting notes.</span></p></li>
+      <li><span class="when">2025</span><p class="what"><strong>Podium</strong>, senior AI support engineer<span>Monitoring and bug resolution for a large fleet of production agents.</span></p></li>
+      <li><span class="when">2023 to 2025</span><p class="what"><strong>Pattern</strong>, analytics engineer<span>Dynamic pricing, review syndication, and alerting for marketplace brands.</span></p></li>
+      <li><span class="when">2022</span><p class="what"><strong>Goldman Sachs</strong>, business intelligence analyst<span>Automation and reporting for Global Markets controls.</span></p></li>
+    </ul>
+  </section>
+
+  <section id="nightstand">
+    <h2>On the nightstand</h2>
+    <p class="nightstand">Currently <b>The Poisonwood Bible</b>, Barbara Kingsolver. Before that, <b>Demon Copperhead</b>. Recommendations welcome, especially anything that reads well by headlamp.</p>
+  </section>
+</Base>
