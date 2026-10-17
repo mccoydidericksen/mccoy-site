@@ -119,39 +119,17 @@ p { max-width: var(--measure); }
 .ledger .what span { display: block; color: var(--paper-dim); font-size: 0.98rem; }
 @media (max-width: 560px) { .ledger li { grid-template-columns: 1fr; gap: 0.1rem; } }
 
-/* Projects: spines on a shelf */
-.shelf {
-  display: flex; align-items: flex-end; gap: 0.55rem;
-  padding: 0 0.75rem; margin: 0.5rem 0 0; list-style: none;
-  border-bottom: 10px solid var(--leather);
-  box-shadow: 0 10px 0 var(--pine-deep);
-  overflow-x: auto; scrollbar-width: thin;
+/* Projects: same cards as the demos; only linked cards lift on hover */
+.projects .demo .meta { font-size: 0.85rem; font-style: italic; color: var(--moss); }
+div.demo:hover { transform: none; border-color: var(--rule); box-shadow: none; }
+
+/* Portrait */
+.portrait {
+  display: block; width: 132px; height: 132px; border-radius: 50%; object-fit: cover;
+  margin: 0 0 1.75rem; border: 2px solid var(--lamp);
+  box-shadow: 0 0 0 6px rgba(199, 161, 90, 0.12), 0 10px 30px rgba(0, 0, 0, 0.35);
 }
-.spine {
-  flex: 0 0 auto;
-  writing-mode: vertical-rl; transform: rotate(180deg);
-  width: 3.2rem; height: 15.5rem;
-  padding: 1rem 0.5rem;
-  border-radius: 2px 3px 3px 2px;
-  display: flex; flex-direction: column; justify-content: space-between; align-items: center;
-  text-decoration: none; color: var(--paper);
-  box-shadow: inset 2px 0 0 rgba(255,255,255,0.06), inset -3px 0 0 rgba(0,0,0,0.25);
-  transition: transform 160ms ease;
-}
-.spine:hover, .spine:focus-visible { transform: rotate(180deg) translateX(-6px); }
-@media (prefers-reduced-motion: reduce) { .spine { transition: none; } }
-.spine .title { font-weight: 500; font-size: 1.02rem; letter-spacing: 0.01em; }
-.spine .tag { font-size: 0.78rem; font-style: italic; opacity: 0.8; }
-.spine.tall { height: 17.5rem; width: 3.6rem; }
-.spine.short { height: 13.5rem; }
-.spine.thin { width: 2.5rem; }
-.s-green { background: #30453a; } .s-brown { background: #5c3f30; }
-.s-slate { background: #3b4451; } .s-ochre { background: #8a6b2f; } .s-plum { background: #4a3444; }
-.s-wine { background: #5e2a35; }
-.shelf-notes { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; gap: 1rem; }
-.shelf-notes li { max-width: var(--measure); }
-.shelf-notes strong { font-weight: 500; }
-.shelf-notes .meta { color: var(--paper-dim); font-size: 0.95rem; }
+@media (max-width: 560px) { .portrait { width: 104px; height: 104px; } }
 
 /* Case study */
 .facts { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }

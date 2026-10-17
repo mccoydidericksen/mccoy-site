@@ -1,6 +1,27 @@
 ---
 import Base from "../layouts/Base.astro";
+import { Image } from "astro:assets";
 import ScrupleDemos from "../components/ScrupleDemos.astro";
+import portrait from "../assets/mccoy.png";
+
+// Cards with an href link out; the rest show their status instead of a link to nowhere.
+const projects = [
+  { name: "Scruple", kicker: "In progress", href: "/scruple", go: "Read the case study",
+    blurb: "Margin recovery for independent pharmacies: invoices, remittances and NADAC joined into a dollar figure an owner can act on.",
+    meta: "Python, uv, Vercel" },
+  { name: "basecamp-mcp", kicker: "Going public soon",
+    blurb: "An MCP server and a small agent that plan backcountry trips in Utah: NWS weather, Recreation.gov campgrounds and live site availability, avalanche forecasts. One tool catalog, two consumers, tested against fixtures and the live feeds.",
+    meta: "TypeScript, MCP SDK, Anthropic API" },
+  { name: "Claude Code toolchain", kicker: "Internal · write-up coming",
+    blurb: "The skills, subagents, hooks, and CLI clients my team uses to let agents read and act on Jira, Bitbucket, Sentry, Sidekiq, and Slack, with a fresh-context code reviewer that scores its own confidence.",
+    meta: "Claude Code" },
+  { name: "Agent cost audit", kicker: "Essay in progress",
+    blurb: "Where the tokens went across a quarter of AI-assisted development, and what changed once we knew.",
+    meta: "Write-up" },
+  { name: "Customer portal", kicker: "Freelance",
+    blurb: "Scheduling, invoicing, and client messaging for a small business, over a Monday.com integration with single sign-on.",
+    meta: "Next.js, Auth0, Vercel" },
+];
 ---
 <Base
   title="McCoy Didericksen"
@@ -18,6 +39,7 @@ import ScrupleDemos from "../components/ScrupleDemos.astro";
       <path d="M520 60 C 600 20, 700 40, 760 90 S 780 180, 700 190 S 560 160, 520 110 Z"/>
       <path d="M548 72 C 612 42, 690 58, 738 98 S 752 168, 696 176 S 582 152, 550 112 Z"/>
     </svg>
+    <Image class="portrait" src={portrait} alt="McCoy Didericksen" width={132} height={132} densities={[1, 2]} loading="eager" />
     <h1>McCoy Didericksen<br><em>builds the tools, then goes outside.</em></h1>
     <p>Software engineer in Utah. I build AI agents and the tooling around them: the parts that read your systems, do the tedious work, and tell you plainly what they did. I'd rather spend the time that saves on a trail or with a book.</p>
     <p class="where">South Jordan, Utah. Remote or along the Wasatch Front.</p>
@@ -35,21 +57,28 @@ import ScrupleDemos from "../components/ScrupleDemos.astro";
   </section>
 
   <section id="projects">
-    <h2>Off the shelf</h2>
-    <ul class="shelf">
-      <li><a class="spine tall s-wine" href="/scruple"><span class="title">Scruple</span><span class="tag">pharmacy margins</span></a></li>
-      <li><a class="spine s-green" href="https://github.com/mccoydidericksen"><span class="title">basecamp-mcp</span><span class="tag">MCP server + agent</span></a></li>
-      <li><a class="spine s-brown" href="https://github.com/mccoydidericksen"><span class="title">Claude Code toolchain</span><span class="tag">skills, subagents, hooks</span></a></li>
-      <li><a class="spine short thin s-slate" href="https://github.com/mccoydidericksen"><span class="title">Agent cost audit</span><span class="tag">write-up</span></a></li>
-      <li><a class="spine s-ochre" href="https://bookrot.app"><span class="title">bookrot</span><span class="tag">in the shop</span></a></li>
-      <li><a class="spine short s-plum" href="https://github.com/mccoydidericksen"><span class="title">Customer portal</span><span class="tag">freelance</span></a></li>
-    </ul>
-    <ul class="shelf-notes">
-      <li><strong>basecamp-mcp.</strong> An MCP server and a small agent that plan backcountry trips in Utah: NWS weather, Recreation.gov campgrounds and live site availability, avalanche forecasts. One tool catalog, two consumers, tested against fixtures and the live feeds. <span class="meta">TypeScript, MCP SDK, Anthropic API.</span></li>
-      <li><strong>Claude Code toolchain.</strong> The skills, subagents, hooks, and CLI clients my team uses to let agents read and act on Jira, Bitbucket, Sentry, Sidekiq, and Slack, with a fresh-context code reviewer that scores its own confidence. <span class="meta">Internal; write-up coming.</span></li>
-      <li><strong>Agent cost audit.</strong> Where the tokens went across a quarter of AI-assisted development, and what changed once we knew. <span class="meta">Essay, in progress.</span></li>
-      <li><strong>bookrot.</strong> Reading-comprehension quizzes for people who actually finish books. <span class="meta">Mastra, Bun, Postgres. Back in the shop for a rebuild.</span></li>
-      <li><strong>Customer portal.</strong> A freelance build for a small business: scheduling, invoicing, and client messaging over a Monday.com integration with single sign-on. <span class="meta">Next.js, Auth0, Vercel.</span></li>
+    <h2>Projects</h2>
+    <ul class="demos projects">
+      {projects.map((p) => (
+        <li>
+          {p.href ? (
+            <a class="demo" href={p.href}>
+              <span class="kicker">{p.kicker}</span>
+              <span class="name">{p.name}</span>
+              <span class="blurb">{p.blurb}</span>
+              <span class="meta">{p.meta}</span>
+              <span class="go">{p.go}</span>
+            </a>
+          ) : (
+            <div class="demo">
+              <span class="kicker">{p.kicker}</span>
+              <span class="name">{p.name}</span>
+              <span class="blurb">{p.blurb}</span>
+              <span class="meta">{p.meta}</span>
+            </div>
+          )}
+        </li>
+      ))}
     </ul>
   </section>
 
