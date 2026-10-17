@@ -31,14 +31,14 @@ After a resync, check the board's headline numbers still match `src/components/S
 redeploy). No key, no tracking. Turn on session replay in the PostHog project settings. The shortage
 check's input and results carry `ph-no-capture`, so replays never record a visitor's product list.
 
-To see which application led to a visit, share links with a UTM tag, e.g. `/?utm_source=acme`.
+To see which application led to a visit, share links with a UTM tag, e.g. `https://mccoydid.dev/?utm_source=acme`.
 PostHog stores it on the person as `$initial_utm_source`.
 
 ## Env
 
 - `PUBLIC_POSTHOG_KEY` project key (`phc_...`, safe in client code)
 - `PUBLIC_POSTHOG_HOST` default `https://us.i.posthog.com`
-- `SITE_URL` canonical origin, default `https://mccoy-site.vercel.app`; set it once the custom domain is live
+- `SITE_URL` canonical origin, default `https://mccoydid.dev`
 
 ## TODO
 
