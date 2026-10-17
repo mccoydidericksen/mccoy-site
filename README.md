@@ -1,22 +1,47 @@
-# mccoydidericksen.github.io
+# mccoy-site
 
-Personal site: one static page, no build step, no tracking.
+Personal site. Astro, static output, hosted on Vercel, visits counted with PostHog.
 
-## Deploy (GitHub Pages, ~2 minutes)
+```bash
+npm install
+npm run dev            # http://localhost:4321
+npm run build          # dist/
+```
 
-1. Create a public repo named exactly `mccoydidericksen.github.io`, push this folder to `main`.
-2. Repo Settings > Pages > Source: Deploy from a branch, `main`, `/ (root)`.
-3. It is live at https://mccoydidericksen.github.io within a minute. Add that URL to your GitHub profile, LinkedIn contact info, and the "Other website" field on applications.
+## Pages
 
-Custom domain later: buy `mccoy.dev` or similar, add a `CNAME` file containing the domain, point the DNS at GitHub Pages.
+- `/` hero, Scruple demos, project shelf, work ledger, nightstand (`src/pages/index.astro`)
+- `/scruple` case study (`src/pages/scruple/index.astro`)
+- `/scruple/shortage`, `/scruple/board` the Scruple demos, served with Scruple's own styles plus a "back" pill (`src/pages/scruple/[demo].astro`)
 
-## Edit
+## Scruple demos
 
-Everything is in `index.html`. Sections, top to bottom: hero, shelf (projects), ledger (work), nightstand (reading), footer. The spines are links; adjust `.spine` classes (`tall`, `short`, `thin`, `s-*` colors) to change the shelf.
+The demo HTML and data are copied from the private rxledger repo, because Vercel can't read it at
+build time. The shortage data refreshes daily over there; here it is a snapshot, so resync now and then:
+
+```bash
+npm run sync:scruple   # reads ../rxledger/site/public, rewrites paths to /scruple/*, fails on any miss
+```
+
+After a resync, check the board's headline numbers still match `src/components/ScrupleDemos.astro`.
+
+## Analytics
+
+`src/components/Analytics.astro` loads PostHog when `PUBLIC_POSTHOG_KEY` is set (Vercel env var, then
+redeploy). No key, no tracking. Turn on session replay in the PostHog project settings. The shortage
+check's input and results carry `ph-no-capture`, so replays never record a visitor's product list.
+
+To see which application led to a visit, share links with a UTM tag, e.g. `/?utm_source=acme`.
+PostHog stores it on the person as `$initial_utm_source`.
+
+## Env
+
+- `PUBLIC_POSTHOG_KEY` project key (`phc_...`, safe in client code)
+- `PUBLIC_POSTHOG_HOST` default `https://us.i.posthog.com`
+- `SITE_URL` canonical origin, default `https://mccoy-site.vercel.app`; set it once the custom domain is live
 
 ## TODO
 
-- [ ] Replace the Claude Code toolchain and cost-audit spine links with real URLs once the write-ups exist (both currently point at the GitHub profile).
-- [ ] Decide what bookrot links to while it is being rebuilt (the spine points at bookrot.app).
-- [ ] Add an `og:image` (a screenshot of the shelf works) so links unfurl nicely on LinkedIn.
-- [ ] Optional: a small "field notes" section for short posts, if you start writing.
+- [ ] Replace the Claude Code toolchain and cost-audit spine links with real URLs once the write-ups exist.
+- [ ] Point the basecamp-mcp spine at its repo once it is public.
+- [ ] Add an `og:image` so links unfurl nicely on LinkedIn.
