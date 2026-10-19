@@ -1,0 +1,41 @@
+---
+// Camp Forecast as two cards: the app, and the tool loop behind it. Peek figures are the example
+// trip sheet on campforecast.com's landing page; keep them in step if that example changes.
+const site = "https://campforecast.com";
+const trip = new URLSearchParams({
+  q: "Fly fish the Middle Provo Saturday morning, camp nearby Friday night",
+  focus: "fishing,camping",
+});
+const appStack = ["Next.js", "Clerk", "Neon Postgres", "Drizzle", "MapLibre", "PostHog", "Vercel"];
+const loopStack = ["Claude API", "MCP SDK", "TypeScript", "zod", "Vitest"];
+---
+<ul class="demos">
+  <li>
+    <a class="demo" href={site}>
+      <span class="kicker">Live · campforecast.com</span>
+      <span class="name">Camp Forecast</span>
+      <span class="blurb">Say where you're headed and what you're going for. It runs the checks for that spot and those dates and lays out a trip sheet: forecast, map, timed itinerary, and why. Save it, share it, and log what you catch and see.</span>
+      <span class="peek" aria-hidden="true">
+        <span class="peek-row"><span>Example · Middle Provo · Sat</span><span class="flag ok">Go</span></span>
+        <span class="days"><span>Fri 53/36</span><span class="today">Sat 49/31</span><span>Sun 55/33</span></span>
+        <span class="peek-row"><span>7:00 AM · Fish the upper river</span><span class="flag ok">151 cfs steady</span></span>
+      </span>
+      <span class="stack">{appStack.map((s) => <span>{s}</span>)}</span>
+      <span class="go">Open Camp Forecast</span>
+    </a>
+  </li>
+  <li>
+    <a class="demo" href={`${site}/plan?${trip}`}>
+      <span class="kicker">Try it · sign in, two free plans</span>
+      <span class="name">The loop behind the sheet</span>
+      <span class="blurb">A streamed Claude tool-use loop with prompt caching and a structured-output trip plan. The numbers on the sheet come straight from the tool results, so the model never retypes them. The same tools ship as an MCP server for Claude Code and Desktop.</span>
+      <span class="peek" aria-hidden="true">
+        <span class="peek-row"><span>→ get_forecast</span><span class="dim">Sat 49/31</span></span>
+        <span class="peek-row"><span>→ get_stream_conditions</span><span class="dim">151 cfs, water 53°F</span></span>
+        <span class="peek-row"><span>→ get_bird_activity</span><span class="dim">2 notable reports</span></span>
+      </span>
+      <span class="stack">{loopStack.map((s) => <span>{s}</span>)}</span>
+      <span class="go">Plan a Middle Provo trip</span>
+    </a>
+  </li>
+</ul>

@@ -1,27 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import { Image } from "astro:assets";
+import CampForecast from "../components/CampForecast.astro";
 import ScrupleDemos from "../components/ScrupleDemos.astro";
 import portrait from "../assets/mccoy.png";
-
-// Cards with an href link out; the rest show their status instead of a link to nowhere.
-const projects = [
-  { name: "Scruple", kicker: "In progress", href: "/scruple", go: "Read the case study",
-    blurb: "Margin recovery for independent pharmacies: invoices, remittances and NADAC joined into a dollar figure an owner can act on.",
-    meta: "Python, uv, Vercel" },
-  { name: "basecamp-mcp", kicker: "Going public soon",
-    blurb: "An MCP server and a small agent that plan backcountry trips in Utah: NWS weather, Recreation.gov campgrounds and live site availability, avalanche forecasts. One tool catalog, two consumers, tested against fixtures and the live feeds.",
-    meta: "TypeScript, MCP SDK, Anthropic API" },
-  { name: "Claude Code toolchain", kicker: "Internal · write-up coming",
-    blurb: "The skills, subagents, hooks, and CLI clients my team uses to let agents read and act on Jira, Bitbucket, Sentry, Sidekiq, and Slack, with a fresh-context code reviewer that scores its own confidence.",
-    meta: "Claude Code" },
-  { name: "Agent cost audit", kicker: "Essay in progress",
-    blurb: "Where the tokens went across a quarter of AI-assisted development, and what changed once we knew.",
-    meta: "Write-up" },
-  { name: "Customer portal", kicker: "Freelance",
-    blurb: "Scheduling, invoicing, and client messaging for a small business, over a Monday.com integration with single sign-on.",
-    meta: "Next.js, Auth0, Vercel" },
-];
 ---
 <Base
   title="McCoy Didericksen"
@@ -50,37 +32,18 @@ const projects = [
     </ul>
   </header>
 
+  <section id="shipped">
+    <h2>Shipped</h2>
+    <p class="bench-lede"><strong><span class="glyph">△</span> Camp Forecast.</strong> It started as an MCP server for planning Utah trips and grew into an app. Behind every plan are the National Weather Service, Recreation.gov campsite availability, USGS river gauges, eBird, and the Utah Avalanche Center, read live. The app, the MCP server, and a CLI agent all run on one tool catalog. <a href="https://campforecast.com">Plan a trip</a></p>
+    <CampForecast />
+  </section>
+
   <section id="bench">
     <h2>On the bench</h2>
     <p class="bench-lede"><strong><span class="glyph">℈</span> Scruple.</strong> We're building margin recovery for independent pharmacies, which lose money a few dollars at a time: claims paid below cost, Medicare refunds that never arrive, wholesaler prices that creep up. Both demos below run on public data or a made-up pharmacy. <a href="/scruple">How it's built</a></p>
     <ScrupleDemos />
   </section>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <ul class="demos projects">
-      {projects.map((p) => (
-        <li>
-          {p.href ? (
-            <a class="demo" href={p.href}>
-              <span class="kicker">{p.kicker}</span>
-              <span class="name">{p.name}</span>
-              <span class="blurb">{p.blurb}</span>
-              <span class="meta">{p.meta}</span>
-              <span class="go">{p.go}</span>
-            </a>
-          ) : (
-            <div class="demo">
-              <span class="kicker">{p.kicker}</span>
-              <span class="name">{p.name}</span>
-              <span class="blurb">{p.blurb}</span>
-              <span class="meta">{p.meta}</span>
-            </div>
-          )}
-        </li>
-      ))}
-    </ul>
-  </section>
 
   <section id="work">
     <h2>Where I've worked</h2>

@@ -113,6 +113,13 @@ p { max-width: var(--measure); }
 .peek .big { font-size: 1.5rem; font-variation-settings: "opsz" 72; color: var(--paper); line-height: 1.1; }
 .peek .bar { height: 6px; border-radius: 3px; background: var(--rule); margin: 0.35rem 0 0.15rem; overflow: hidden; }
 .peek .bar i { display: block; height: 100%; background: var(--lamp); }
+.peek .days { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin: 0.3rem 0; text-align: center; }
+.peek .days > span { padding: 0.3rem 0; border-radius: 3px; background: var(--pine-lift); color: var(--paper-dim); }
+.peek .days > .today { color: var(--paper); outline: 1px solid var(--lamp); }
+
+/* Stack chips on the cards */
+.stack { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.stack > span { font-size: 0.75rem; font-style: italic; color: var(--moss); padding: 0.05rem 0.55rem; border: 1px solid var(--rule); border-radius: 999px; }
 
 /* Work: a plain ledger */
 .ledger { list-style: none; margin: 0; padding: 0; }
@@ -123,10 +130,6 @@ p { max-width: var(--measure); }
 .ledger .what strong { font-weight: 500; }
 .ledger .what span { display: block; color: var(--paper-dim); font-size: 0.98rem; }
 @media (max-width: 560px) { .ledger li { grid-template-columns: 1fr; gap: 0.1rem; } }
-
-/* Projects: same cards as the demos; only linked cards lift on hover */
-.projects .demo .meta { font-size: 0.85rem; font-style: italic; color: var(--moss); }
-div.demo:hover { transform: none; border-color: var(--rule); box-shadow: none; }
 
 /* Portrait */
 .portrait {

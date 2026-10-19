@@ -10,9 +10,14 @@ npm run build          # dist/
 
 ## Pages
 
-- `/` hero, Scruple demos, project shelf, work ledger, nightstand (`src/pages/index.astro`)
+- `/` hero, Camp Forecast cards, Scruple demos, work ledger, nightstand (`src/pages/index.astro`)
 - `/scruple` case study (`src/pages/scruple/index.astro`)
 - `/scruple/shortage`, `/scruple/board` the Scruple demos, served with Scruple's own styles plus a "back" pill (`src/pages/scruple/[demo].astro`)
+
+## Camp Forecast
+
+`src/components/CampForecast.astro` links to https://campforecast.com (source in the private basecamp-mcp
+repo). The card previews copy the example trip sheet on that site's landing page; keep them in step.
 
 ## Scruple demos
 
@@ -42,6 +47,6 @@ PostHog stores it on the person as `$initial_utm_source`.
 
 ## TODO
 
-- [ ] Replace the Claude Code toolchain and cost-audit spine links with real URLs once the write-ups exist.
-- [ ] Point the basecamp-mcp spine at its repo once it is public.
+- [ ] Bring back a Projects section once the Claude Code toolchain and cost-audit write-ups have somewhere to link.
+- [ ] Link the basecamp-mcp repo from the Camp Forecast cards once it is public.
 - [ ] Add an `og:image` so links unfurl nicely on LinkedIn.
